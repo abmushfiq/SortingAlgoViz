@@ -94,6 +94,8 @@ public class BubleSort   extends JPanel {
 		}
 		
 
+		g.setColor(Color.BLUE);
+		g.fillRect(i*BAR_WIDTH, 0, BAR_WIDTH, bar_height[i]);
 		
 		g.setColor(Color.RED);
 		g.fillRect((j+1)*BAR_WIDTH, 0, BAR_WIDTH, bar_height[j+1]);
