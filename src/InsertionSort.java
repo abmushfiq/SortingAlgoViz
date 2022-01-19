@@ -44,7 +44,7 @@ public class InsertionSort extends JPanel {
 				for(j = i+1; j>0 ; j--) {
 					if(bar_height[j] <bar_height[j-1]){
 						swap(j,j-1);
-						Thread.sleep(5);
+						Thread.sleep(100);
 						repaint();
 					}
 					
@@ -93,7 +93,7 @@ public class InsertionSort extends JPanel {
 		g.fillRect(i*BAR_WIDTH, 0, BAR_WIDTH, bar_height[i]);
 		
 		g.setColor(Color.GREEN);
-		g.fillRect(j*BAR_WIDTH, 0, BAR_WIDTH, bar_height[j]);
+		g.fillRect((j)*BAR_WIDTH, 0, BAR_WIDTH, bar_height[j]);
 		
 		
 	}

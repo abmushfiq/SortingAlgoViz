@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
-public class BubleSort   extends JPanel {
+
+
+public class SelectionSort extends JPanel {
+	
 	
 	private final int WIDTH = 1000, HEIGHT = WIDTH*9/16;
 	private final int SIZE = 100;
@@ -16,11 +20,10 @@ public class BubleSort   extends JPanel {
 	private int[] bar_height = new int[SIZE];
 	private SwingWorker<Void,Void> sorter;
 	int i, j;
-	boolean swaped;
 	
 	
 	
-	private  BubleSort() {
+	private SelectionSort() {
 		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -38,21 +41,21 @@ public class BubleSort   extends JPanel {
 	sorter = new SwingWorker<>() {
 		@Override
 		public Void doInBackground() throws InterruptedException {
-			// here is bubble sort algorithms;
-			for( i =0; i< bar_height.length-1; i++) {
-				swaped = false;
-				for( j = 0 ; j< bar_height.length-1-i ; j++ ) {
-					if(bar_height[j] > bar_height[j+1]) {
-						swap(j,j+1);
-						swaped = true;
-						Thread.sleep(5);
+			//here is Selection sort algorithm 
+			for( i =0; i<bar_height.length-1; i++) {
+				int min = i;
+				for( j=i+1; j<bar_height.length; j++) {
+					if(bar_height[j]<bar_height[min]) {
+						min =j;
+						Thread.sleep(100);
 						repaint();
 					}
+					
 				}
 				
-				// if you did not swap for a particular value of i, its means the array is sorted hence stop the loop
-				if(!swaped) {
-					break;
+				if (min != i) {
+					swap (i, min);
+					
 				}
 			}
 			
@@ -93,10 +96,11 @@ public class BubleSort   extends JPanel {
 	 
 		}
 		
-
-		
 		g.setColor(Color.RED);
-		g.fillRect((j+1)*BAR_WIDTH, 0, BAR_WIDTH, bar_height[j+1]);
+		g.fillRect(i*BAR_WIDTH, 0, BAR_WIDTH, bar_height[i]);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect((j)*BAR_WIDTH, 0, BAR_WIDTH, bar_height[j]);
 		
 		
 	}
@@ -108,7 +112,7 @@ public class BubleSort   extends JPanel {
 			JFrame frame = new JFrame("Sort Algorithms Visualizer");
 			frame.setResizable(false);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setContentPane(new  BubleSort());
+			frame.setContentPane(new SelectionSort());
 			frame.validate();
 			frame.pack();
 			frame.setLocationRelativeTo(null);
